@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Editar paciente | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <div class="mb-4">
+
+        <span class="etiqueta">
+            PACIENTES
+        </span>
+
+        <h1 class="titulo-panel">
+            Editar paciente
+        </h1>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="panel-card">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nombre"
+                            class="form-control"
+                            value="{{ paciente.nombre }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Edad
+                        </label>
+
+                        <input
+                            type="number"
+                            name="edad"
+                            class="form-control"
+                            value="{{ paciente.edad }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="text"
+                            name="telefono"
+                            class="form-control"
+                            value="{{ paciente.telefono }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Correo
+                        </label>
+
+                        <input
+                            type="email"
+                            name="correo"
+                            class="form-control"
+                            value="{{ paciente.correo }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Dirección
+                        </label>
+
+                        <textarea
+                            name="direccion"
+                            class="form-control"
+                            rows="3"
+                        >{{ paciente.direccion }}</textarea>
+
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <button class="btn btn-primary-custom">
+                            Guardar cambios
+                        </button>
+
+                        <a
+                            href="{{ url_for('pacientes') }}"
+                            class="btn btn-outline-custom"
+                        >
+                            Cancelar
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

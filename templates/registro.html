@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro de usuarios | Hospital Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+
+    <section class="login-info">
+
+        <a
+            href="{{ url_for('inicio') }}"
+            class="login-logo"
+        >
+            <span class="logo-marca">
+                <i class="bi bi-plus-lg"></i>
+            </span>
+
+            <span>
+                HOSPITAL<br>
+                VIDA SANA
+            </span>
+        </a>
+
+        <span class="etiqueta">
+            REGISTRO DE USUARIOS
+        </span>
+
+        <h1>
+            Crea tu cuenta<br>
+            en Vida Sana.
+        </h1>
+
+        <p>
+            Regístrate para acceder al sistema, consultar servicios
+            y administrar información según tu tipo de usuario.
+        </p>
+
+        <div class="mt-4">
+
+            <p>
+                <i class="bi bi-shield-check text-info me-2"></i>
+                Contraseñas protegidas con hash.
+            </p>
+
+            <p>
+                <i class="bi bi-calendar-check text-info me-2"></i>
+                Acceso a gestión de citas.
+            </p>
+
+            <p>
+                <i class="bi bi-database-check text-info me-2"></i>
+                Datos guardados en MongoDB local.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="login-formulario">
+
+        <form
+            method="POST"
+            action="{{ url_for('registro') }}"
+            id="formRegistro"
+            class="formulario-card"
+        >
+
+            <div class="text-center mb-4">
+
+                <div class="icono-login">
+                    <i class="bi bi-person-plus-fill"></i>
+                </div>
+
+                <h2>
+                    Crear cuenta
+                </h2>
+
+                <p class="texto-suave">
+                    Completa todos los campos para registrarte.
+                </p>
+
+            </div>
+
+            <div id="errorRegistro"></div>
+
+            <div class="mb-3">
+
+                <label
+                    for="nombre"
+                    class="form-label"
+                >
+                    Nombre completo
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ nombre or '' }}"
+                    class="form-control"
+                    placeholder="Ejemplo: Juan Pérez"
+                    minlength="3"
+                    required
+                >
+
+            </div>
+
+            <div class="mb-3">
+
+                <label
+                    for="correo"
+                    class="form-label"
+                >
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    value="{{ correo or '' }}"
+                    class="form-control"
+                    placeholder="usuario@correo.com"
+                    required
+                >
+
+            </div>
+
+            <div class="mb-3">
+
+                <label
+                    for="rol"
+                    class="form-label"
+                >
+                    Tipo de usuario
+                </label>
+
+                <select
+                    id="rol"
+                    name="rol"
+                    class="form-select"
+                    required
+                >
+                    <option value="paciente">
+                        Paciente
+                    </option>
+
+                    <option value="recepcionista">
+                        Recepcionista
+                    </option>
+                </select>
+
+                <small class="texto-suave">
+                    Los administradores se crean únicamente desde
+                    el panel de administración.
+                </small>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label
+                    for="passwordRegistro"
+                    class="form-label"
+                >
+                    Contraseña
+                </label>
+
+                <div class="input-group">
+
+                    <input
+                        type="password"
+                        id="passwordRegistro"
+                        name="password"
+                        class="form-control"
+                        placeholder="Mínimo 6 caracteres"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="mostrarPassword"
+                        class="btn btn-outline-custom"
+                    >
+                        <i class="bi bi-eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label
+                    for="confirmarPassword"
+                    class="form-label"
+                >
+                    Confirmar contraseña
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmarPassword"
+                    name="confirmar_password"
+                    class="form-control"
+                    placeholder="Repite la contraseña"
+                    minlength="6"
+                    required
+                >
+
+            </div>
+
+            <div class="form-check mb-4">
+
+                <input
+                    type="checkbox"
+                    id="terminos"
+                    class="form-check-input"
+                    required
+                >
+
+                <label
+                    for="terminos"
+                    class="form-check-label"
+                >
+                    Acepto el uso de mis datos en este proyecto escolar.
+                </label>
+
+            </div>
+
+            <button
+                type="submit"
+                id="botonRegistro"
+                class="btn btn-primary-custom w-100"
+            >
+                <i class="bi bi-person-check-fill"></i>
+                Registrarme
+            </button>
+
+            <p class="text-center mt-4 mb-0">
+
+                ¿Ya tienes una cuenta?
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="enlace"
+                >
+                    Iniciar sesión
+                </a>
+
+            </p>
+
+        </form>
+
+    </section>
+
+</div>
+
+{% endblock %}

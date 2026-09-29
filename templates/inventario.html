@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Inventario | Administración
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <h1 class="titulo-panel mb-4">
+        Administración de inventario
+    </h1>
+
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+
+            <div class="panel-card">
+
+                <h4>Productos registrados</h4>
+
+                <div class="table-responsive mt-3">
+
+                    <table class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Cantidad</th>
+                                <th>Stock mínimo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for producto in productos %}
+
+                                <tr>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.categoria }}</td>
+                                    <td>{{ producto.cantidad }}</td>
+                                    <td>{{ producto.stock_minimo }}</td>
+                                    <td>
+
+                                        {% if producto.cantidad <= producto.stock_minimo %}
+
+                                            <span class="badge text-bg-danger">
+                                                Stock bajo
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="badge text-bg-success">
+                                                Disponible
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+
+                            {% else %}
+
+                                <tr>
+                                    <td colspan="5">
+                                        No hay productos registrados.
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="panel-card">
+
+                <h4>Agregar producto</h4>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input
+                            name="nombre"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <input
+                            name="categoria"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cantidad</label>
+                        <input
+                            type="number"
+                            name="cantidad"
+                            class="form-control"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Stock mínimo</label>
+                        <input
+                            type="number"
+                            name="stock_minimo"
+                            class="form-control"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">
+                        Guardar producto
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

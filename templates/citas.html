@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Citas médicas | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <span class="etiqueta">
+        GESTIÓN HOSPITALARIA
+    </span>
+
+    <h1 class="titulo-panel">
+        Solicitud de citas médicas
+    </h1>
+
+    <p class="texto-suave">
+        Selecciona paciente, médico, fecha y horario.
+    </p>
+
+    <div class="row g-4 mt-2">
+
+        <div class="col-lg-5">
+
+            <div class="panel-card">
+
+                <h4>
+                    <i class="bi bi-calendar-plus text-info"></i>
+                    Agendar cita
+                </h4>
+
+                <form method="POST">
+
+                    <label class="form-label mt-3">
+                        Paciente
+                    </label>
+
+                    <select
+                        name="paciente_id"
+                        class="form-select"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona un paciente
+                        </option>
+
+                        {% for paciente in pacientes %}
+
+                            <option value="{{ paciente._id }}">
+                                {{ paciente.nombre }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <label class="form-label mt-3">
+                        Médico
+                    </label>
+
+                    <select
+                        name="medico_id"
+                        class="form-select"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona un médico
+                        </option>
+
+                        {% for medico in medicos %}
+
+                            <option value="{{ medico._id }}">
+                                {{ medico.nombre }}
+                                ·
+                                {{ medico.especialidad }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <label class="form-label mt-3">
+                        Especialidad
+                    </label>
+
+                    <select
+                        name="especialidad"
+                        class="form-select"
+                        required
+                    >
+                        <option>
+                            Medicina general
+                        </option>
+
+                        <option>
+                            Cardiología
+                        </option>
+
+                        <option>
+                            Pediatría
+                        </option>
+
+                        <option>
+                            Nutrición
+                        </option>
+                    </select>
+
+                    <div class="row mt-2">
+
+                        <div class="col">
+
+                            <label class="form-label">
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                name="fecha"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="col">
+
+                            <label class="form-label">
+                                Hora
+                            </label>
+
+                            <input
+                                type="time"
+                                name="hora"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <label class="form-label mt-3">
+                        Motivo de consulta
+                    </label>
+
+                    <textarea
+                        name="motivo"
+                        class="form-control mb-3"
+                        rows="3"
+                    ></textarea>
+
+                    <button
+                        class="btn btn-primary-custom w-100"
+                    >
+                        <i class="bi bi-save"></i>
+                        Registrar cita
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-7">
+
+            <div class="panel-card">
+
+                <h4>
+                    Próximas citas
+                </h4>
+
+                <div class="table-responsive mt-3">
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Médico</th>
+                                <th>Fecha</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for cita in citas %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ cita.paciente_nombre }}
+                                    </td>
+
+                                    <td>
+                                        {{ cita.medico_nombre }}
+                                    </td>
+
+                                    <td>
+                                        {{ cita.fecha }}
+                                        {{ cita.hora }}
+                                    </td>
+
+                                    <td>
+
+                                        <form
+                                            method="POST"
+                                            action="{{ url_for(
+                                                'eliminar_cita',
+                                                id=cita._id
+                                            ) }}"
+                                        >
+
+                                            <button
+                                                class="btn btn-sm btn-danger-custom"
+                                                data-confirmar="¿Eliminar esta cita?"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            {% else %}
+
+                                <tr>
+                                    <td colspan="4">
+                                        No hay citas registradas.
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

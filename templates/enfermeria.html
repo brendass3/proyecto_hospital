@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Personal de enfermería | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <div class="mb-4">
+
+        <span class="etiqueta">
+            PERSONAL HOSPITALARIO
+        </span>
+
+        <h1 class="titulo-panel">
+            Personal de enfermería
+        </h1>
+
+        <p class="texto-suave">
+            Consulta y busca al personal por nombre, turno o área.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+
+            <div class="panel-card">
+
+                <div class="d-flex justify-content-between mb-4">
+
+                    <h4>
+                        Personal registrado
+                    </h4>
+
+                    <form class="d-flex">
+
+                        <input
+                            type="search"
+                            name="buscar"
+                            value="{{ buscar }}"
+                            class="form-control"
+                            placeholder="Buscar"
+                        >
+
+                        <button class="btn btn-primary-custom ms-2">
+                            <i class="bi bi-search"></i>
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Turno</th>
+                                <th>Área</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for enfermero in personal %}
+
+                                <tr>
+                                    <td>
+                                        {{ enfermero.nombre }}
+                                    </td>
+
+                                    <td>
+                                        {{ enfermero.turno }}
+                                    </td>
+
+                                    <td>
+                                        {{ enfermero.area }}
+                                    </td>
+
+                                    <td>
+                                        {{ enfermero.telefono }}
+                                    </td>
+
+                                    <td>
+                                        <span class="badge text-bg-success">
+                                            {{ enfermero.estado }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <form
+                                            method="POST"
+                                            action="{{ url_for(
+                                                'eliminar_enfermero',
+                                                id=enfermero._id
+                                            ) }}"
+                                        >
+
+                                            <button
+                                                class="btn btn-sm btn-outline-danger"
+                                                onclick="return confirm(
+                                                    '¿Eliminar personal?'
+                                                )"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            {% else %}
+
+                                <tr>
+                                    <td colspan="6">
+                                        No se encontró personal.
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="panel-card">
+
+                <h4 class="mb-4">
+                    Agregar personal
+                </h4>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nombre"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Turno
+                        </label>
+
+                        <select
+                            name="turno"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="">
+                                Selecciona
+                            </option>
+
+                            <option>
+                                Matutino
+                            </option>
+
+                            <option>
+                                Vespertino
+                            </option>
+
+                            <option>
+                                Nocturno
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Área de trabajo
+                        </label>
+
+                        <input
+                            type="text"
+                            name="area"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="text"
+                            name="telefono"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">
+                        Agregar personal
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

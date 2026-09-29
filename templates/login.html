@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Iniciar sesión | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+
+    <div class="login-info">
+
+        <a
+            href="{{ url_for('inicio') }}"
+            class="login-logo"
+        >
+
+            <span class="logo-marca">
+                <i class="bi bi-plus-lg"></i>
+            </span>
+
+            <span>
+                HOSPITAL<br>
+                VIDA SANA
+            </span>
+
+        </a>
+
+        <span class="etiqueta">
+            ACCESO AL SISTEMA
+        </span>
+
+        <h1>
+            Tu salud,
+            <br>
+            siempre cerca.
+        </h1>
+
+        <p>
+            Ingresa para gestionar los módulos del hospital.
+        </p>
+
+    </div>
+
+    <div class="login-formulario">
+
+        <form
+            method="POST"
+            class="formulario-card needs-validation"
+            novalidate
+        >
+
+            <div class="text-center mb-4">
+
+                <div class="icono-login">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+
+                <h2>
+                    Iniciar sesión
+                </h2>
+
+                <p class="texto-suave">
+                    Accede con tu cuenta.
+                </p>
+
+            </div>
+
+            <label class="form-label">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                name="correo"
+                class="form-control mb-3"
+                placeholder="correo@ejemplo.com"
+                required
+            >
+
+            <label class="form-label">
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                class="form-control mb-4"
+                required
+            >
+
+            <button
+                class="btn btn-primary-custom w-100"
+            >
+                <i class="bi bi-box-arrow-in-right"></i>
+                Entrar al sistema
+            </button>
+
+            <p class="text-center mt-4">
+
+                ¿No tienes cuenta?
+
+                <a
+                    href="{{ url_for('registro') }}"
+                    class="enlace"
+                >
+                    Registrarme
+                </a>
+
+            </p>
+
+            <p class="text-center texto-suave">
+
+                Administrador:
+
+                <br>
+
+                admin@vidasana.mx / 123456
+
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

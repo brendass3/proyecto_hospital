@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contacto | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <div class="mb-4">
+
+        <span class="etiqueta">
+            ESTAMOS PARA AYUDARTE
+        </span>
+
+        <h1 class="titulo-panel">
+            Información de contacto
+        </h1>
+
+        <p class="texto-suave">
+            Comunícate con el Hospital Vida Sana.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-5">
+
+            <div class="contacto-info">
+
+                <div class="icono-contacto">
+                    <i class="bi bi-hospital"></i>
+                </div>
+
+                <h2>
+                    Hospital Vida Sana
+                </h2>
+
+                <p>
+                    Estamos disponibles para atender tus dudas,
+                    solicitudes y comentarios.
+                </p>
+
+                <hr>
+
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    Av. Salud 123, Tultepec,
+                    Estado de México.
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone"></i>
+                    55 5555 0101
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    contacto@vidasana.mx
+                </p>
+
+                <p>
+                    <i class="bi bi-clock"></i>
+                    Lunes a viernes de 08:00 a 20:00 h.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-7">
+
+            <div class="panel-card">
+
+                <h4 class="mb-4">
+                    Envíanos un mensaje
+                </h4>
+
+                <form method="POST">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                name="nombre"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+                                Correo
+                            </label>
+
+                            <input
+                                type="email"
+                                name="correo"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Asunto
+                        </label>
+
+                        <input
+                            type="text"
+                            name="asunto"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Mensaje
+                        </label>
+
+                        <textarea
+                            name="mensaje"
+                            class="form-control"
+                            rows="6"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <button class="btn btn-primary-custom">
+                        <i class="bi bi-send"></i>
+                        Enviar mensaje
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

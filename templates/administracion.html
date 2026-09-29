@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Panel de administración | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <div class="mb-4">
+
+        <span class="etiqueta">
+            CONTROL DEL SISTEMA
+        </span>
+
+        <h1 class="titulo-panel">
+            Panel de administración
+        </h1>
+
+        <p class="texto-suave">
+            Administra usuarios, reportes, configuración e inventario.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+
+            <div class="admin-card">
+
+                <div class="admin-icon azul">
+                    <i class="bi bi-people"></i>
+                </div>
+
+                <h3>Usuarios</h3>
+
+                <p>
+                    Usuarios registrados:
+                    <strong>{{ total_usuarios }}</strong>
+                </p>
+
+                <a
+                    href="{{ url_for('usuarios') }}"
+                    class="btn btn-outline-custom"
+                >
+                    Administrar usuarios
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="admin-card">
+
+                <div class="admin-icon verde">
+                    <i class="bi bi-bar-chart"></i>
+                </div>
+
+                <h3>Reportes</h3>
+
+                <p>
+                    Genera reportes de pacientes, citas y personal.
+                </p>
+
+                <button class="btn btn-outline-custom">
+                    Generar reporte
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="admin-card">
+
+                <div class="admin-icon morado">
+                    <i class="bi bi-gear"></i>
+                </div>
+
+                <h3>Configuración</h3>
+
+                <p>
+                    Modifica las opciones generales del sistema.
+                </p>
+
+                <button class="btn btn-outline-custom">
+                    Configurar sistema
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="admin-card">
+
+                <div class="admin-icon naranja">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+
+                <h3>Inventario</h3>
+
+                <p>
+                    Productos registrados:
+                    <strong>{{ total_inventario }}</strong>
+                </p>
+
+                <a
+                    href="{{ url_for('inventario') }}"
+                    class="btn btn-outline-custom"
+                >
+                    Ver inventario
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

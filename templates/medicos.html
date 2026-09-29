@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Personal médico | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+
+    <div class="mb-4">
+
+        <span class="etiqueta">
+            DIRECTORIO MÉDICO
+        </span>
+
+        <h1 class="titulo-panel">
+            Personal médico
+        </h1>
+
+        <p class="texto-suave">
+            Consulta y agrega médicos del hospital.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+
+            <div class="panel-card">
+
+                <h4 class="mb-4">
+                    Médicos registrados
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Profesional</th>
+                                <th>Especialidad</th>
+                                <th>Cédula</th>
+                                <th>Horario</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for medico in medicos %}
+
+                                <tr>
+                                    <td>
+                                        {{ medico.nombre }}
+                                    </td>
+
+                                    <td>
+                                        {{ medico.especialidad }}
+                                    </td>
+
+                                    <td>
+                                        {{ medico.cedula }}
+                                    </td>
+
+                                    <td>
+                                        {{ medico.horario }}
+                                    </td>
+
+                                    <td>
+                                        <span class="badge text-bg-success">
+                                            {{ medico.estado }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <form
+                                            method="POST"
+                                            action="{{ url_for(
+                                                'eliminar_medico',
+                                                id=medico._id
+                                            ) }}"
+                                        >
+
+                                            <button
+                                                class="btn btn-sm btn-outline-danger"
+                                                onclick="return confirm(
+                                                    '¿Eliminar médico?'
+                                                )"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            {% else %}
+
+                                <tr>
+                                    <td colspan="6">
+                                        No hay médicos registrados.
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="panel-card">
+
+                <h4 class="mb-4">
+                    <i class="bi bi-person-plus text-primary"></i>
+                    Agregar médico
+                </h4>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nombre"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Especialidad
+                        </label>
+
+                        <input
+                            type="text"
+                            name="especialidad"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Cédula profesional
+                        </label>
+
+                        <input
+                            type="text"
+                            name="cedula"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="text"
+                            name="telefono"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Correo
+                        </label>
+
+                        <input
+                            type="email"
+                            name="correo"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Horario
+                        </label>
+
+                        <input
+                            type="text"
+                            name="horario"
+                            class="form-control"
+                            placeholder="Lun-Vie 09:00-15:00"
+                            required
+                        >
+
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">
+                        Agregar médico
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

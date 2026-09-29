@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Panel de inicio | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<main class="contenido-panel">
+
+    <div class="container-fluid">
+
+        <span class="etiqueta">
+            PANEL DE CONTROL
+        </span>
+
+        <h1 class="titulo-panel">
+            Bienvenido, {{ session["usuario_nombre"] }}
+        </h1>
+
+        <p class="texto-suave">
+            Resumen general del Hospital Vida Sana.
+        </p>
+
+        <div class="row g-4 my-3">
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <div>
+                        <p>Citas</p>
+                        <h2>{{ total_citas }}</h2>
+                        <small>Registradas</small>
+                    </div>
+
+                    <span class="stat-icon azul">
+                        <i class="bi bi-calendar-check"></i>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <div>
+                        <p>Pacientes</p>
+                        <h2>{{ total_pacientes }}</h2>
+                        <small>Registrados</small>
+                    </div>
+
+                    <span class="stat-icon verde">
+                        <i class="bi bi-people"></i>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <div>
+                        <p>Médicos</p>
+                        <h2>{{ total_medicos }}</h2>
+                        <small>Activos</small>
+                    </div>
+
+                    <span class="stat-icon morado">
+                        <i class="bi bi-person-badge"></i>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <div>
+                        <p>Enfermería</p>
+                        <h2>{{ total_enfermeria }}</h2>
+                        <small>Personal</small>
+                    </div>
+
+                    <span class="stat-icon naranja">
+                        <i class="bi bi-person-plus"></i>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-8">
+
+                <div class="panel-card">
+
+                    <h4>
+                        <i class="bi bi-calendar3 text-info"></i>
+                        Próximas citas
+                    </h4>
+
+                    <div class="table-responsive mt-3">
+
+                        <table class="table">
+
+                            <thead>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <th>Médico</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {% for cita in ultimas_citas %}
+
+                                    <tr>
+                                        <td>
+                                            {{ cita.paciente_nombre }}
+                                        </td>
+
+                                        <td>
+                                            {{ cita.medico_nombre }}
+                                        </td>
+
+                                        <td>
+                                            {{ cita.fecha }}
+                                            {{ cita.hora }}
+                                        </td>
+
+                                        <td>
+                                            <span class="badge azul">
+                                                {{ cita.estado }}
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                {% else %}
+
+                                    <tr>
+                                        <td colspan="4">
+                                            No hay citas registradas.
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="panel-card">
+
+                    <h4>
+                        <i class="bi bi-lightning-charge text-warning"></i>
+                        Acciones rápidas
+                    </h4>
+
+                    <div class="d-grid gap-3 mt-4">
+
+                        <a
+                            class="btn btn-primary-custom"
+                            href="{{ url_for('modulo_citas') }}"
+                        >
+                            Registrar cita
+                        </a>
+
+                        <a
+                            class="btn btn-outline-custom"
+                            href="{{ url_for('modulo_pacientes') }}"
+                        >
+                            Pacientes
+                        </a>
+
+                        <button
+                            class="btn btn-success-custom"
+                            data-notificacion="Reporte generado correctamente."
+                        >
+                            Generar reporte
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

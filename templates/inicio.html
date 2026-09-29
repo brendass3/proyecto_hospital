@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Página principal | Vida Sana
+{% endblock %}
+
+{% block content %}
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-75">
+
+            <div class="col-lg-8">
+
+                <span class="etiqueta">
+                    TU SALUD ES NUESTRA PRIORIDAD
+                </span>
+
+                <h1>
+                    Cuidamos de ti en cada etapa de tu vida.
+                </h1>
+
+                <p class="hero-text">
+                    Hospital Vida Sana brinda atención médica integral
+                    con profesionales capacitados, tecnología y seguimiento
+                    cercano.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mt-4">
+
+                    <a
+                        href="{{ url_for('modulo_citas') }}"
+                        class="btn btn-primary-custom btn-lg"
+                    >
+                        <i class="bi bi-calendar-plus"></i>
+                        Agendar una cita
+                    </a>
+
+                    <a
+                        href="#servicios"
+                        class="btn btn-outline-custom btn-lg"
+                    >
+                        Conocer servicios
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<section
+    id="servicios"
+    class="section-padding"
+>
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="etiqueta">
+                NUESTROS SERVICIOS
+            </span>
+
+            <h2 class="titulo-seccion">
+                Atención que inspira confianza
+            </h2>
+
+            <p class="texto-suave">
+                Accede a los módulos del sistema hospitalario.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="card servicio-card h-100">
+
+                    <div class="icono-servicio">
+                        <i class="bi bi-heart-pulse"></i>
+                    </div>
+
+                    <h3>
+                        Consulta médica
+                    </h3>
+
+                    <p>
+                        Atención general y especializada.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card servicio-card h-100">
+
+                    <div class="icono-servicio">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+
+                    <h3>
+                        Citas ágiles
+                    </h3>
+
+                    <p>
+                        Solicita y administra tus citas.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card servicio-card h-100">
+
+                    <div class="icono-servicio">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <h3>
+                        Personal capacitado
+                    </h3>
+
+                    <p>
+                        Consulta médicos y enfermería.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
